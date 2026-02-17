@@ -108,7 +108,7 @@ def get_conversational_chain():
     Respuesta:
     """
     
-    model = ChatGoogleGenerativeAI( model="gemini-3-flash-preview", temperature=0.3, google_api_key=st.secrets["GOOGLE_API_KEY"])
+    model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.3, google_api_key=st.secrets["GOOGLE_API_KEY"])
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
     return chain
@@ -178,6 +178,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
