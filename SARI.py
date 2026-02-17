@@ -117,10 +117,7 @@ def user_input(user_question):
     """Procesa la pregunta y busca en la base vectorial"""
     api_key = st.secrets["GOOGLE_API_KEY"]
 
-embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/text-embedding-004", 
-    google_api_key=api_key
-)f
+embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004", google_api_key=api_key)
     
     
     print(">>> Cargando base de datos vectorial...")
@@ -188,4 +185,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
