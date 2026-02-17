@@ -34,7 +34,7 @@ def get_text_chunks(text):
     return chunks
 
 def get_vector_store(text_chunks):
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     
     ruta_actual = os.path.dirname(os.path.abspath(__file__))
     ruta_faiss = os.path.join(ruta_actual, "faiss_index")
@@ -181,6 +181,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
