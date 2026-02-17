@@ -108,14 +108,19 @@ def get_conversational_chain():
     Respuesta:
     """
     
-    model = ChatGoogleGenerativeAI( model="gemini-3-flash-preview", temperature=0.3)
+    model = ChatGoogleGenerativeAI( model="gemini-3-flash-preview", temperature=0.3, google_api_key=st.secrets["GOOGLE_API_KEY")
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
     return chain
 
 def user_input(user_question):
     """Procesa la pregunta y busca en la base vectorial"""
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
+    api_key = st.secrets["GOOGLE_API_KEY"]
+
+embeddings = GoogleGenerativeAIEmbeddings(
+    model="models/text-embedding-004", 
+    google_api_key=api_key
+)f
     
     
     print(">>> Cargando base de datos vectorial...")
@@ -181,4 +186,5 @@ def main():
             st.warning("Por favor, describe la situación para poder ayudarte.")
 
 if __name__ == "__main__":
+
     main()
