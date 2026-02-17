@@ -34,7 +34,7 @@ def get_text_chunks(text):
     return chunks
 
 def get_vector_store(text_chunks):
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-004")
     
     ruta_actual = os.path.dirname(os.path.abspath(__file__))
     ruta_faiss = os.path.join(ruta_actual, "faiss_index")
@@ -116,7 +116,7 @@ def get_conversational_chain():
 def user_input(user_question):
     # 1. Configuramos los embeddings con la clave de Streamlit
     api_key = st.secrets["GOOGLE_API_KEY"]
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-001",google_api_key=st.secrets["GOOGLE_API_KEY"])
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004",google_api_key=st.secrets["GOOGLE_API_KEY"])
     print(">>> Cargando base de datos vectorial...") 
     new_db = FAISS.load_local(
         "faiss_index", 
@@ -178,6 +178,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
