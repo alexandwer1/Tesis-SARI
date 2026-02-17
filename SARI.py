@@ -114,30 +114,26 @@ def get_conversational_chain():
     return chain
 
 def user_input(user_question):
-    """Procesa la pregunta y busca en la base vectorial"""
+    # 1. Configuramos los embeddings con la clave de Streamlit
     api_key = st.secrets["GOOGLE_API_KEY"]
-
-embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004", google_api_key=api_key)
-    
-    
-    print(">>> Cargando base de datos vectorial...")
-    new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
-    
-    
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/text-embedding-004", 
+        google_api_key=api_key
+    )
+    print(">>> Cargando base de datos vectorial...") 
+    new_db = FAISS.load_local(
+        "faiss_index", 
+        embeddings, 
+        allow_dangerous_deserialization=True
+    )
     print(">>> Buscando información en el manual...")
     docs = new_db.similarity_search(user_question)
-
     chain = get_conversational_chain()
-    
     print(">>> Generando respuesta con Gemini...")
     response = chain({"input_documents": docs, "question": user_question}, return_only_outputs=True)
-
     print(">>> ¡Respuesta generada!")
     st.write("### 💡 Estrategia Inclusiva Sugerida:")
     st.write(response["output_text"])
-
-
-
 def main():
     
     st.header("🧠 Sistema de Asistencia Docente - Educación Inclusiva")
@@ -185,5 +181,6 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
