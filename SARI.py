@@ -6,7 +6,7 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
-from langchain.chains.retrieval_qa import load_qa_chain
+from langchain_classic.chains.question_answering import load_qa_chain
 import time
 import os
 
@@ -136,5 +136,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
