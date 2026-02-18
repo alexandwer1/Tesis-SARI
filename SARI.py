@@ -31,7 +31,7 @@ def get_text_chunks(text):
 def get_vector_store(text_chunks):
     # Usamos embedding-001 que es más estable para evitar errores 404
     embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001", 
+        model="models/text-embedding-004", 
         google_api_key=st.secrets["GOOGLE_API_KEY"]
     )
     
@@ -76,7 +76,7 @@ def user_input(user_question):
     api_key = st.secrets["GOOGLE_API_KEY"]
     
     embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001", # Debe coincidir con el de creación
+        model="models/text-embedding-004", # Debe coincidir con el de creación
         google_api_key=api_key
     )
     
@@ -136,6 +136,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
